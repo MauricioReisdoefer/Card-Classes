@@ -1,18 +1,12 @@
-## IMPORT DAS CLASSES CRIADAS NO CADRCLASSES.PY ##
+from classes import Store
+from classes import Card
+from classes import Location
+from classes import Player
+from classes import Combat
 
-from CardClasses import Store
-from CardClasses import Card
-from CardClasses import Location
-from CardClasses import Player
-from CardClasses import Combat
-
-## SISTEMA OPERACIONAL PARA MEXER NO TERMINAL :)
 import os
 
-## CLASSE GAME, CONTROLA TODO O FLUXO DE GAMEPLAY LEGAL ##
-
-class Game: ## cria classe controladora do jogo :)
-    
+class Game:
     def __init__(self):
         self.cards = self.create_cards() 
         self.starter_decks = self.create_starter_decks()
@@ -21,7 +15,6 @@ class Game: ## cria classe controladora do jogo :)
         self.create_locations()
         self.player = None
 
-    ## retorna as cartas disponiveis no jogo, com suas caracteristicas respectivas aos atributos da classe.
     def create_cards(self):
         return {
             "sword": Card("Espada", "Vence Escudos e Adagas. Perde para Arco e Espada Grande", 5),
@@ -30,7 +23,6 @@ class Game: ## cria classe controladora do jogo :)
             "greatsword": Card("Espada Grande", "Vence Espadas e Escudos. Perde para Arco", 30)
         }
 
-    ## cria os baralhos iniciais, sendo eles cada um uma lista.
     def create_starter_decks(self): 
         c = self.cards 
         return [
@@ -38,35 +30,32 @@ class Game: ## cria classe controladora do jogo :)
             [c["shield"], c["sword"]]
         ]
 
-    ## Cartas disponiveis para a compra. retorna uma lista dos itens
     def create_store_cards(self):
         c = self.cards
         return [c["bow"], c["sword"], c["shield"], c["greatsword"]]
 
-    ## cria as localizaçoes, passando os atributos da classe LOCATION.
     def create_locations(self):
         c = self.cards
-        ## locais originais ##
-        self.locations.append(Location( ## local da masmorra
+        self.locations.append(Location( 
             "Masmorra Sombria",  
-            "Carrasco Imaculado", # inimigo da area
-            [c["sword"], c["shield"]], ## armas do inimigo
-            2, # vida do inimigo
-            10# recompensa
+            "Carrasco Imaculado", 
+            [c["sword"], c["shield"]], 
+            2,
+            10
         ))
-        self.locations.append(Location( ## local de castelo
+        self.locations.append(Location(
             "Castelo Sombrio", 
-            "Rei Perdido", # inimigo da area
-            [c["sword"], c["greatsword"]], ## armas do inimigo
-            5, # vida do inimigo
-            40# recompensa
+            "Rei Perdido",
+            [c["sword"], c["greatsword"]], 
+            5, 
+            40
         ))
-        self.locations.append(Location( ## local da floresta
+        self.locations.append(Location(
             "Floresta Negra", 
-            "Urso Ancião", # inimigo da area
-            [c["shield"], c["sword"]], ## urso com escudo e espada maneiro.
-            3, # vida do inimigo
-            20 # recompensa
+            "Urso Ancião",
+            [c["shield"], c["sword"]],
+            3,
+            20
         ))
     def create_player(self):
             os.system('cls')
@@ -147,8 +136,6 @@ class Game: ## cria classe controladora do jogo :)
                     self.start_location()
                 elif choice == "SAIR":
                     break
-
-    #  INICIAR O JOGO  #
 
 game = Game()
 game.start()
